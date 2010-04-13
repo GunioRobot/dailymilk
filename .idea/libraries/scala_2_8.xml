@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="scala-2.8">
+    <CLASSES>
+      <root url="jar://C:/Program Files (x86)/Scala/scala-2.8.0.beta/lib/scala-compiler.jar!/" />
+      <root url="jar://C:/Program Files (x86)/Scala/scala-2.8.0.beta/lib/scala-library.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://C:/Program Files (x86)/Scala/scala-2.8.0.beta/src/scala-compiler-src.jar!/" />
+      <root url="jar://C:/Program Files (x86)/Scala/scala-2.8.0.beta/src/scala-library-src.jar!/" />
+    </SOURCES>
+  </library>
+</component>
