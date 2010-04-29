@@ -9,18 +9,13 @@ import io.Source
 
 class CsvParser(startLineNo: Int, separators: Char*) {
 
-  def parse(src: Source, closure: (Int, Array[String]) => Option[String]) : List[String] = {
+  def parse(src: Source, closure: (Int, Array[String]) => Unit) = {
     val lines = src.getLines()
-    val startTuple = (startLineNo, List[String]())
-    val endResult = (startTuple /: lines) { (tuple: Tuple2[Int, List[String]], line: String) => {
-        val (lineNo, results) = tuple
-        closure(lineNo, line.split(separators.toArray)) match {
-          case Some(s: String) => (lineNo + 1, s :: results)
-          case None => (lineNo + 1, results)
-        }
+    (startLineNo /: lines) { (lineNo : Int, line: String) => {
+        closure(lineNo, line.split(separators.toArray))
+        lineNo + 1
       }
     }
-    endResult._2
   }
 }
 
@@ -35,7 +30,7 @@ object CsvParser {
 }
 
 class CsvParserSourceWrapper(val src: Source, val parser: CsvParser) {
-  def parseCsv(closure: (Int, Array[String]) => Option[String]) = {
+  def parseCsv(closure: (Int, Array[String]) => Unit) = {
     parser.parse(src, closure)
   }
 }

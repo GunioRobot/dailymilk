@@ -57,14 +57,14 @@ object acc extends Accounting {
 }
 
 object SalaryAccountingApp {
-  def pay(semantics: SalaryProcessing, employees: List[String]) : List[semantics.Salary] = {
+  /*def pay(semantics: SalaryProcessing, employees: List[String]) : List[semantics.Salary] = {
     //import semantics._
     employees map (semantics.net _)
-  }
+  } */
 
   def main(args: Array[String]) {
     val employees = List("Bobor", "Hurka", "Sano", "Skaja")
-    println(pay(salary, employees))
-    println(pay(acc, employees))
+    //println(pay(salary, employees))
+   // println(pay(acc, employees))
   }
 }

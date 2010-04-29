@@ -21,15 +21,16 @@ object PropertiesExtractor {
       import collection.mutable.HashSet
       import CsvParser._
 
-      def keyExtractingClosure(lineNo: Int, columns: Array[String]) : Option[String] = {
-        indexOutOfBounds.opt[String]{
+      def keyExtractingClosure(keys: Set[String])(lineNo: Int, columns: Array[String]) : Unit = {
+        indexOutOfBounds.opt {
           if (columns(0).contains("."))
-            columns(0)
-          else throw new IndexOutOfBoundsException
+            keys.add(columns(0))
         }
       }
-      val keys = Source.fromPath(args(0)).parseCsv(keyExtractingClosure)
 
-      println(keys)
+      val keys = new HashSet[String]
+      Source.fromPath(args(0)).parseCsv(keyExtractingClosure(keys)_)
+
+      keys.foreach(println(_))
   }
 }
