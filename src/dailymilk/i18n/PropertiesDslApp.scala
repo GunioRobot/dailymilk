@@ -10,7 +10,7 @@ import util.Properties
 import tools.nsc.io.File
 import scala.collection.JavaConversions._
 import java.util.{Date, Properties, ResourceBundle}
-import dailymilk.i18n.{Scope, PropertyItem, LabelItem}
+import dailymilk.i18n._
 
 trait PropertyCollector {
   def addSection(item: LabelItem)
