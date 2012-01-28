@@ -31,7 +31,7 @@ object IntNumBetter {
 }
 
 object PartialFunctionObjectApiApp {
-  
+
   def strangeConditional(other: Any): Boolean = cond(other) {
     case x: String if x == "abc" || x == "def" => true
     case x: Int => true

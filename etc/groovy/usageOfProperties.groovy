@@ -1,12 +1,12 @@
-def cli = new CliBuilder(usage: 'groovy PropertiesUsage.groovy [-hvf] ["outputfile"]')  
-cli.h(longOpt: 'help',     'usage information',    required: false)  
+def cli = new CliBuilder(usage: 'groovy PropertiesUsage.groovy [-hvf] ["outputfile"]')
+cli.h(longOpt: 'help',     'usage information',    required: false)
 cli.n(longOpt: 'unused',   'only unused props.',   required: false)
 cli.u(longOpt: 'used',     'only used props.',     required: false)
-cli.v(longOpt: 'verbose',  'verbose mode',         required: false)  
-cli.f(longOpt: 'file',     'output to file',       required: false,     args: 1)  
-OptionAccessor opt = cli.parse(args)  
+cli.v(longOpt: 'verbose',  'verbose mode',         required: false)
+cli.f(longOpt: 'file',     'output to file',       required: false,     args: 1)
+OptionAccessor opt = cli.parse(args)
 
-// Print usage if -h, --help, or no argument is given  
+// Print usage if -h, --help, or no argument is given
 if (!opt || opt.h ) { cli.usage() }
 def verboseMode = true //opt.v ?: true
 def outputFilename = opt.f ?: "c:/pub/unused.properties"
@@ -19,7 +19,7 @@ def resourceBundles = ["labels", "calculation", "combination", "importer", "Reso
 
 // Load all keys from resource bundles
 def keysToFind = new TreeSet<String>()
-resourceBundles.each { bundleName -> 
+resourceBundles.each { bundleName ->
     def bundle = ResourceBundle.getBundle(bundleName)
     keysToFind.addAll(Collections.list(bundle.getKeys()))
 }
@@ -38,13 +38,13 @@ if (reportUnused || onlyUsed) {
                 if (verboseMode) {
                     println "Parsing: ${file.getPath()}"
                 }
-                (file.text =~ keysPattern).each { line, matchedKey -> 
+                (file.text =~ keysPattern).each { line, matchedKey ->
                     keysCount[matchedKey] = (keysCount[matchedKey] ?: 0) + 1
                 }
             }
         }
     }
-    
+
     if (reportUnused) { // Report not used keys
         keysToFind.removeAll(keysCount.keySet())
     } else { // Report found keys

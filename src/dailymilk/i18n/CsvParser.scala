@@ -26,7 +26,7 @@ object CsvParser {
 
   implicit def source2CsvParser(src: Source) = new CsvParserSourceWrapper(src, new CsvParser(startLineNo, separators: _*))
 
-  
+
 }
 
 class CsvParserSourceWrapper(val src: Source, val parser: CsvParser) {

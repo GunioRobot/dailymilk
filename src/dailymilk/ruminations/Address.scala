@@ -27,7 +27,7 @@ object Address {
       }
     }
     println(a toLabel)
-    
+
     val b = new Address(13, "Kleeblatt gasse", "Wien", "Oestereich", "A-1010")
     println(b toLabel)
   }

@@ -22,7 +22,7 @@ trait DefaultPropertyCollector extends PropertyCollector {
   import Scope._
 
   private val default = LabelItem("default", AllLangs)
-  
+
   private val sections = MutableMap[LabelItem, MutableSet[PropertyItem]](default -> createBlankSet)
 
   def addSection(item : LabelItem) {
@@ -36,7 +36,7 @@ trait DefaultPropertyCollector extends PropertyCollector {
   def addProperty(item: PropertyItem) {
     containing(item.key) match {
       case Some(key) => sections(key) + item
-      case None => sections(default) + item  
+      case None => sections(default) + item
     }
   }
 

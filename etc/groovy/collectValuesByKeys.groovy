@@ -25,10 +25,10 @@ resourceBundles.each { bundleName ->
 
 File output = new File(outputFilename)
 output.delete()
-results.each { entry -> 
+results.each { entry ->
     def value = entry.value
     if (value.contains(separator)) {
         value = "'${value}'"
     }
-    output << "${entry.key}${separator}${entry.value}\n" 
+    output << "${entry.key}${separator}${entry.value}\n"
 }

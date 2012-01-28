@@ -50,5 +50,5 @@ object SpellingCorrector {
     // program
     List("osters", "musters", "mixters") map correct foreach println
   }
-  
+
 }

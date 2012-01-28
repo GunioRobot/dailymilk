@@ -28,7 +28,7 @@ class PropertyFileCombinator(holder: FilenameHolder) {
     for (line <- loadToList(holder.baseFilename)) {
       line match {
         case s: String if (s.startsWith("#")) => new LabelItem(s.drop(1).trim)
-        case s: String if (s.trim.isEmpty) => EmptyItem 
+        case s: String if (s.trim.isEmpty) => EmptyItem
       }
     }
   }

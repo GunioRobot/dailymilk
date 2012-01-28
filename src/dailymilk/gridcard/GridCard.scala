@@ -4,7 +4,7 @@ import scala.collection.mutable.{Map => MutMap}
 import scala.util.Random
 
 // TODO think about functional style and mutability
-// TODO build as module, try to design SPI and API 
+// TODO build as module, try to design SPI and API
 class GridCard(private val content: Map[(Char, Int), String]) {
   private val keys = content.keySet.toArray
 
@@ -15,7 +15,7 @@ class GridCard(private val content: Map[(Char, Int), String]) {
 }
 
 object GridCard {
-  
+
   private val alphabet = 'a' to 'z' toArray
   private val digits = '0' to '9' toArray
 

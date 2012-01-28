@@ -5,13 +5,13 @@ interface Item {
     abstract def getScope()
 }
 
-class LabelItem implements Item {   
+class LabelItem implements Item {
     private final def scope
     private final def value
     LabelItem(labelText) { this(labelText, null) }
-    LabelItem(labelText, scope) { 
+    LabelItem(labelText, scope) {
         this.value = "# ${labelText}"
-        this.scope = scope 
+        this.scope = scope
     }
     def getScope() { scope ?: ALL_LANGS }
     def getValue() { value }
@@ -20,9 +20,9 @@ class LabelItem implements Item {
 class PropertyItem implements Item {
     private final def scope
     private final def value
-    PropertyItem(key, value, scope) { 
-        this.value = "${key}=${value}" 
-        this.scope = scope 
+    PropertyItem(key, value, scope) {
+        this.value = "${key}=${value}"
+        this.scope = scope
     }
     def getScope() { scope }
     def getValue() { value }
@@ -34,15 +34,15 @@ class EmptyItem implements Item {
 }/**/
 
 // Csv parsing
-class CsvParser {  
-    static def parseCsv(file,closure) {  
-        def lineCount = 0  
-        file.eachLine() { line ->  
-            def row = line.tokenize(";")  
-            lineCount++  
-            closure(lineCount, row)  
-        }  
-    }  
+class CsvParser {
+    static def parseCsv(file,closure) {
+        def lineCount = 0
+        file.eachLine() { line ->
+            def row = line.tokenize(";")
+            lineCount++
+            closure(lineCount, row)
+        }
+    }
 }
 
 // Collector
@@ -53,7 +53,7 @@ class PropertyCollector {
     private def parsedLangs = [:]
     private def contexts = [:]
     private def currentContext = null
-    
+
     PropertyCollector(defaultLang, allowedLangs) {
         this.defaultLang = defaultLang
         this.allowedLangs = allowedLangs*.toLowerCase()
@@ -103,7 +103,7 @@ class PropertyCollector {
         addItem(new EmptyItem())
     }
     private def addItem(item) {
-        if (currentContext == null) { 
+        if (currentContext == null) {
             throw new RuntimeException("Context can not be null")
         }
         if (item.scope == Item.ALL_LANGS) {
@@ -140,8 +140,8 @@ def collector = new PropertyCollector(defaultLang, langsToInclude)
 // Parsing of input
 println "parsing csv file ${inputFilename}"
 use(CsvParser.class) {
-    File file = new File(inputFilename)  
-    file.parseCsv { index, row -> 
+    File file = new File(inputFilename)
+    file.parseCsv { index, row ->
         if (index == 1) {
             collector.parseHeader(index, row[1..-1])
         } else if (row[0]) {
@@ -156,7 +156,7 @@ use(CsvParser.class) {
         } else {
             collector.addEmptyItem(index)
         }
-    }  
+    }
 }
 
 // Flush output
